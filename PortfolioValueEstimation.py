@@ -197,21 +197,6 @@ if st.sidebar.button("Run Simulations"):
 # ----------------------------------------------------------------------------------------------------------------------
 # MC SIMULATION
 
-
-
-
-    st.subheader("Monte Carlo Simulation")
-
-    st.write("""
-    Monte Carlo simulation is a powerful tool for predicting portfolio outcomes. However, using biased stock selection can lead to unrealistic results. In this project, we simulate different portfolio paths by randomly sampling from historical portfolio returns.
-
-    **Note 1**  
-    A proper Monte Carlo simulation should sample from an estimated return distribution, not just past returns. This approach doesn't fully capture the randomness and variability of future market conditions.
-
-    **Note 2**  
-    This simulation uses only 100 trajectories, which is limited by speed and memory constraints. Ideally, a more accurate simulation would involve around 100,000 trajectories to better capture the range of potential outcomes.
-    """)
-
     # Download data from Yahoo Finance
     data2 = yf.download(tickers, start="2010-01-01", end="2024-12-31", interval='1mo')
 
@@ -229,11 +214,77 @@ if st.sidebar.button("Run Simulations"):
     monthly_data2['sum_ret'] = monthly_data2pct.sum(axis=1)
     monthly_data2['avg_ret'] = monthly_data2['sum_ret'] / len(tickers)
   
-    monthly_data3 = monthly_data2['avg_ret'].copy()
-
+    monthly_data3 = monthly_data2.copy()
 
 
   
+
+
+    st.subheader("Monte Carlo Simulation")
+
+    st.write("""
+    Monte Carlo simulation is a powerful tool for predicting portfolio outcomes. However, using biased stock selection can lead to unrealistic results. In this project, we simulate different portfolio paths by randomly sampling from historical portfolio returns.
+
+
+
+# Histogram SIMULATION
+
+    st.write("""
+    Histograms below shows sampling distribution. Portfolio returns are skewed and portfolio value is rising.
+    """)
+    # Display the first few rows of the data in the app
+    #st.write("### First 5 rows of the monthly data:", monthly_data2.head())
+
+    # Create and show the histogram for average monthly returns
+    plt.figure(figsize=(12, 6))
+
+    plt.hist(
+        monthly_data3['avg_ret'] * 100,  # Convert to percentage
+        bins=20,
+        edgecolor='black',
+        color='skyblue',
+        alpha=0.8
+    )
+
+    # Title and labels for the plot
+    plt.title('Distribution of Average Monthly Returns', fontsize=14)
+    plt.xlabel('Average Monthly Return (%)', fontsize=12)
+    plt.ylabel('Frequency', fontsize=12)
+
+    # Customize ticks and grid
+    plt.xticks(fontsize=10)
+    plt.yticks(fontsize=10)
+    plt.grid(axis='y', linestyle='--', alpha=0.7)
+
+    # Adjust layout
+    plt.tight_layout()
+
+    # Display the plot in Streamlit
+    st.pyplot(plt)
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+    **Note 1**  
+    A proper Monte Carlo simulation should sample from an estimated return distribution, not just past returns. This approach doesn't fully capture the randomness and variability of future market conditions.
+
+    **Note 2**  
+    This simulation uses only 100 trajectories, which is limited by speed and memory constraints. Ideally, a more accurate simulation would involve around 100,000 trajectories to better capture the range of potential outcomes.
+    """)
+
+
 
 #----------------------
 
@@ -299,36 +350,3 @@ if st.sidebar.button("Run Simulations"):
     """)
 
     #-----------------------------------------------------------------------------------------------------
-
-  # Histogram SIMULATION
-
-    st.write("""
-    Histograms below shows sampling distribution. Portfolio returns are skewed and portfolio value is rising.
-    """)
-
-    # Create and show the histogram for average monthly returns
-    plt.figure(figsize=(12, 6))
-
-    plt.hist(
-        monthly_data3['avg_ret'] * 100,  # Convert to percentage
-        bins=20,
-        edgecolor='black',
-        color='skyblue',
-        alpha=0.8
-    )
-
-    # Title and labels for the plot
-    plt.title('Distribution of Average Monthly Returns', fontsize=14)
-    plt.xlabel('Average Monthly Return (%)', fontsize=12)
-    plt.ylabel('Frequency', fontsize=12)
-
-    # Customize ticks and grid
-    plt.xticks(fontsize=10)
-    plt.yticks(fontsize=10)
-    plt.grid(axis='y', linestyle='--', alpha=0.7)
-
-    # Adjust layout
-    plt.tight_layout()
-
-    # Display the plot in Streamlit
-    st.pyplot(plt)
