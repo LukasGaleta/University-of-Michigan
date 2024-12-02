@@ -229,15 +229,13 @@ if st.sidebar.button("Run Simulations"):
     monthly_data2['sum_ret'] = monthly_data2pct.sum(axis=1)
     monthly_data2['avg_ret'] = monthly_data2['sum_ret'] / len(tickers)
   
-    monthly_data3 = monthly_data2.copy()
+    monthly_data3 = monthly_data2['avg_ret'].copy()
 
   # Histogram SIMULATION
 
     st.write("""
     Histograms below shows sampling distribution. Portfolio returns are skewed and portfolio value is rising.
     """)
-    # Display the first few rows of the data in the app
-    #st.write("### First 5 rows of the monthly data:", monthly_data2.head())
 
     # Create and show the histogram for average monthly returns
     plt.figure(figsize=(12, 6))
