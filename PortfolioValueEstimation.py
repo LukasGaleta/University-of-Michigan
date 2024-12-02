@@ -107,7 +107,7 @@ if st.sidebar.button("Run Simulations"):
     data.head(5)
     data['Date'] = pd.to_datetime(data['Date'])  # Assuming 'Date' is your date column
     
-  data.set_index('Date', inplace=True)
+    data.set_index('Date', inplace=True)
     
     # Now, you can safely resample
     monthly_data = data.resample('M').last()
