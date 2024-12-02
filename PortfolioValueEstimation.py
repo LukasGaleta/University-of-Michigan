@@ -107,9 +107,13 @@ if a == 1:
 
     data = yf.download(tickers, start=start_date, end="2024-12-31",  interval='1mo')
 
-    data = data[["Close", "Adj Close"]]
+    data = data[["Adj Close"]]
 
-    st.write(data.head(6))
+    st.write("""
+    **Data**
+    """)
+  
+    st.write(data.head(10))
 
     # monthly_data = data.resample('ME').last()
 
