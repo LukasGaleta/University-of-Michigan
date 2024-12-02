@@ -228,8 +228,8 @@ if st.sidebar.button("Run Simulations"):
     monthly_data2['avg_price'] = monthly_data2.sum(axis=1) / len(tickers)
     monthly_data2['sum_ret'] = monthly_data2pct.sum(axis=1)
     monthly_data2['avg_ret'] = monthly_data2['sum_ret'] / len(tickers)
-
-
+  
+    monthly_data3 = monthly_data2.copy()
 
 #----------------------
 
@@ -307,7 +307,7 @@ if st.sidebar.button("Run Simulations"):
     plt.figure(figsize=(12, 6))
 
     plt.hist(
-        monthly_data2['avg_ret'] * 100,  # Convert to percentage
+        monthly_data3['avg_ret'] * 100,  # Convert to percentage
         bins=20,
         edgecolor='black',
         color='skyblue',
