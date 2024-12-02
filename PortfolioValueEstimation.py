@@ -98,7 +98,11 @@ else:
 
 #-----------------------------------------------------------------------------------------------------------------------
 
-if st.sidebar.button("Run Simulations"):
+#3if 'message' not in st.session_state:
+#    st.session_state.message = "Hello, Streamlit!"
+
+
+if 'message' not in st.session_state and st.sidebar.button("Run Simulations"):
 
     data = yf.download(tickers, start=start_date, end="2024-12-31",  interval='1mo')
 
