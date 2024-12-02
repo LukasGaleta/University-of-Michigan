@@ -1,13 +1,7 @@
 import subprocess
 import sys
 
-# Install yfinance if it's not already installed
-try:
-    import yfinance as yf
-except ImportError:
-    subprocess.check_call([sys.executable, "-m", "pip", "install", "yfinance"])
-    import yfinance as yf
-  
+subprocess.check_call([sys.executable, "-m", "pip", "install", "yfinance"])
 import yfinance as yf
 
 import streamlit as st
