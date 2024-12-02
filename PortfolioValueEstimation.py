@@ -105,8 +105,13 @@ if st.sidebar.button("Run Simulations"):
     data = data[["Close", "Adj Close"]]
 
     data.head(5)
-
+    data['Date'] = pd.to_datetime(data['Date'])  # Assuming 'Date' is your date column
+    
+  data.set_index('Date', inplace=True)
+    
+    # Now, you can safely resample
     monthly_data = data.resample('M').last()
+
     monthly_data.head(5)
 
     monthly_data['s0'] = monthly_invest / monthly_data['Adj Close'][tickers[0]] / 5
@@ -214,6 +219,10 @@ if st.sidebar.button("Run Simulations"):
     data2 = data2[["Adj Close"]]
 
     # Resample to monthly data (taking the last value of each month)
+
+
+    data2['Date'] = pd.to_datetime(data2['Date'])  # Assuming 'Date' is your date column
+    data2.set_index('Date', inplace=True)
     monthly_data2 = data2.resample('M').last()
 
     # Calculate monthly returns
