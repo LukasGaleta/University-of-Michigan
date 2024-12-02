@@ -231,7 +231,7 @@ if st.sidebar.button("Run Simulations"):
 
     trajectories_list = []
 
-    for x in range(200):
+    for x in range(100):
       simulation = Create_trajectory(monthly_data2, monthly_invest)
       trajectory = simulation.portfolio_value
       trajectory = trajectory.reset_index(drop=True)
