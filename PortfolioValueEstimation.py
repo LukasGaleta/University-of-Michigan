@@ -106,7 +106,7 @@ if st.sidebar.button("Run Simulations"):
 
 
 
-    monthly_data = data.resample('M').last()
+    monthly_data = data.resample('ME').last()
 
     monthly_data.head(5)
 
@@ -214,7 +214,7 @@ if st.sidebar.button("Run Simulations"):
     # Filter only 'Adj Close'
     data2 = data2[["Adj Close"]]
 
-    monthly_data2 = data2.resample('M').last()
+    monthly_data2 = data2.resample('ME').last()
 
     # Calculate monthly returns
     monthly_data2pct = monthly_data2.pct_change()
