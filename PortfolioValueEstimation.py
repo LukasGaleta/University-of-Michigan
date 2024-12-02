@@ -231,6 +231,44 @@ if st.sidebar.button("Run Simulations"):
   
     monthly_data3 = monthly_data2.copy()
 
+  # Histogram SIMULATION
+
+    st.write("""
+    Histograms below shows sampling distribution. Portfolio returns are skewed and portfolio value is rising.
+    """)
+    # Display the first few rows of the data in the app
+    #st.write("### First 5 rows of the monthly data:", monthly_data2.head())
+
+    # Create and show the histogram for average monthly returns
+    plt.figure(figsize=(12, 6))
+
+    plt.hist(
+        monthly_data3['avg_ret'] * 100,  # Convert to percentage
+        bins=20,
+        edgecolor='black',
+        color='skyblue',
+        alpha=0.8
+    )
+
+    # Title and labels for the plot
+    plt.title('Distribution of Average Monthly Returns', fontsize=14)
+    plt.xlabel('Average Monthly Return (%)', fontsize=12)
+    plt.ylabel('Frequency', fontsize=12)
+
+    # Customize ticks and grid
+    plt.xticks(fontsize=10)
+    plt.yticks(fontsize=10)
+    plt.grid(axis='y', linestyle='--', alpha=0.7)
+
+    # Adjust layout
+    plt.tight_layout()
+
+    # Display the plot in Streamlit
+    st.pyplot(plt)
+
+
+  
+
 #----------------------
 
 
@@ -295,37 +333,4 @@ if st.sidebar.button("Run Simulations"):
     """)
 
     #-----------------------------------------------------------------------------------------------------
-# Histogram SIMULATION
 
-    st.write("""
-    Histograms below shows sampling distribution. Portfolio returns are skewed and portfolio value is rising.
-    """)
-    # Display the first few rows of the data in the app
-    #st.write("### First 5 rows of the monthly data:", monthly_data2.head())
-
-    # Create and show the histogram for average monthly returns
-    plt.figure(figsize=(12, 6))
-
-    plt.hist(
-        monthly_data3['avg_ret'] * 100,  # Convert to percentage
-        bins=20,
-        edgecolor='black',
-        color='skyblue',
-        alpha=0.8
-    )
-
-    # Title and labels for the plot
-    plt.title('Distribution of Average Monthly Returns', fontsize=14)
-    plt.xlabel('Average Monthly Return (%)', fontsize=12)
-    plt.ylabel('Frequency', fontsize=12)
-
-    # Customize ticks and grid
-    plt.xticks(fontsize=10)
-    plt.yticks(fontsize=10)
-    plt.grid(axis='y', linestyle='--', alpha=0.7)
-
-    # Adjust layout
-    plt.tight_layout()
-
-    # Display the plot in Streamlit
-    st.pyplot(plt)
