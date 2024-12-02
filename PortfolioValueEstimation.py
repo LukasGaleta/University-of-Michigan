@@ -224,7 +224,7 @@ if st.sidebar.button("Run Simulations"):
 
     st.write("""
     Monte Carlo simulation is a powerful tool for predicting portfolio outcomes. However, using biased stock selection can lead to unrealistic results. In this project, we simulate different portfolio paths by randomly sampling from historical portfolio returns.
-
+    """)
 
 
 # Histogram SIMULATION
@@ -270,13 +270,7 @@ if st.sidebar.button("Run Simulations"):
 
 
 
-
-
-
-
-
-
-
+    st.write("""
     **Note 1**  
     A proper Monte Carlo simulation should sample from an estimated return distribution, not just past returns. This approach doesn't fully capture the randomness and variability of future market conditions.
 
