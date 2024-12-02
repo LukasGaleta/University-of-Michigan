@@ -102,7 +102,7 @@ else:
 #    st.session_state.message = "Hello, Streamlit!"
 
 
-if 'message' not in st.session_state and st.sidebar.button("Run Simulations"):
+if st.sidebar.button("Run Simulations"):
 
     data = yf.download(tickers, start=start_date, end="2024-12-31",  interval='1mo')
 
@@ -151,33 +151,13 @@ if 'message' not in st.session_state and st.sidebar.button("Run Simulations"):
 
     fig, ax = plt.subplots(figsize=(12, 7))
 
-    # Plotting the data
-    ax.plot(
-        monthly_data.index,
-        monthly_data['invested'],
-        label='Invested Amount',
-        color='blue',
-        linestyle='--',
-        linewidth=2
-    )
-
-    ax.plot(
-        monthly_data.index,
-        monthly_data['portfolio_value'],
-        label='Portfolio Value',
-        color='green',
-        linestyle='-',
-        linewidth=2
-    )
-
-    ax.fill_between(
-        monthly_data.index,
-        monthly_data['invested'],
-        monthly_data['portfolio_value'],
-        color='gray',
-        alpha=0.2,
-        label='Difference'
-    )
+    if not monthly_data['invested'].empty and not monthly_data['portfolio_value'].empty:
+        # Plotting the data
+        ax.plot(monthly_data.index, monthly_data['invested'], label='Invested Amount', color='blue', linestyle='--', linewidth=2)
+        ax.plot(monthly_data.index, monthly_data['portfolio_value'], label='Portfolio Value', color='green', linestyle='-', linewidth=2)
+        ax.fill_between(monthly_data.index, monthly_data['invested'], monthly_data['portfolio_value'], color='gray', alpha=0.2, label='Difference')
+    else:
+        st.write("Data is missing for invested or portfolio value.")
 
     # Labels and Title
     ax.set_title('Invested vs Portfolio Value Over Time', fontsize=14)
