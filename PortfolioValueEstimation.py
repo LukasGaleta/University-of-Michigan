@@ -110,10 +110,12 @@ if a == 1:
     data = data[["Adj Close"]]
 
     st.write("""
-    **Data**
+    **Data Stock Prices**
     """)
-  
-    st.write(data.head(10))
+
+    dataR = data.round(2)
+ 
+    st.write(dataR.head(10))
 
     # monthly_data = data.resample('ME').last()
 
