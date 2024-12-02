@@ -100,13 +100,13 @@ else:
 
 if st.sidebar.button("Run Simulations"):
 
-    data = yf.download(tickers, start=start_date, end="2024-12-31")
+    data = yf.download(tickers, start=start_date, end="2024-12-31",  interval='1mo')
 
     data = data[["Close", "Adj Close"]]
 
 
 
-    monthly_data = data.resample('ME').last()
+    #monthly_data = data.resample('ME').last()
 
     monthly_data.head(5)
 
@@ -209,12 +209,12 @@ if st.sidebar.button("Run Simulations"):
     """)
 
     # Download data from Yahoo Finance
-    data2 = yf.download(tickers, start="2010-01-01", end="2024-12-31")
+    data2 = yf.download(tickers, start="2010-01-01", end="2024-12-31", interval='1mo')
 
     # Filter only 'Adj Close'
     data2 = data2[["Adj Close"]]
 
-    monthly_data2 = data2.resample('ME').last()
+    #monthly_data2 = data2.resample('ME').last()
 
     # Calculate monthly returns
     monthly_data2pct = monthly_data2.pct_change()
