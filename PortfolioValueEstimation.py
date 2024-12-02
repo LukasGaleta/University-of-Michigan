@@ -109,7 +109,7 @@ if a == 1:
 
     data = data[["Close", "Adj Close"]]
 
-    
+    st.write(data.head(6))
 
     # monthly_data = data.resample('ME').last()
 
