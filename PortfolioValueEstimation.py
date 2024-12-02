@@ -49,7 +49,7 @@ More importantly, this project aims to fill the gap in tools available for estim
 #-----------------------------------------------------------------------------------------------------------------------
 # Sidebar inputs
 st.sidebar.header("How much do you invest monthly?")
-monthly_invest = st.sidebar.slider("Number of Data Points", min_value=10, max_value=500, value=100)
+monthly_invest = st.sidebar.slider("Amont in USD", min_value=10, max_value=500, value=100)
 
 #-----------------------------------------------------------------------------------------------------------------------
 #Start date of simulation
